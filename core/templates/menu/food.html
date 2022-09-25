@@ -1,7 +1,9 @@
-
+{% extends 'menu/menu.html' %}
 {% load static %}
+{% block content %}
+  <!-- food section -->
 
-  <section class="food_section layout_padding-bottom">
+  <section class="food_section layout_padding">
     <div class="container">
       <div class="heading_container heading_center">
         <h2>
@@ -712,3 +714,4 @@
       </div>
     </div>
   </section>
+  {% endblock %}
