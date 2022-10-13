@@ -1,0 +1,21 @@
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'cyberburguer',
+        'USER': 'cyberburgueradmin',
+        'PASSWORD': 'cyber1234',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'cyberburgueradmin',
+        'USER': 'root',
+        'PASSWORD': 'Mago7766',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+}

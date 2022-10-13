@@ -1,5 +1,5 @@
 from django.contrib import admin
-from core.models import Produto,Cliente,Endereco,Pedido
+from core.models import Produto,Cliente,Endereco,Car
 
 class ProdutoAdmin(admin.ModelAdmin):
     list_display = (
@@ -37,15 +37,14 @@ class EnderecoAdmin(admin.ModelAdmin):
 admin.site.register(Endereco, EnderecoAdmin)
 
 
-class PedidoAdmin(admin.ModelAdmin):
+class CarAdmin(admin.ModelAdmin):
     list_display = (
         'id',
-        'status_pedido',
-        'observacao',
         'get_produtos', 
         'cliente',
         'total',
+        'observacao',
         'created_at',
         'updated_at',
     )
-admin.site.register(Pedido, PedidoAdmin)
+admin.site.register(Car, CarAdmin)

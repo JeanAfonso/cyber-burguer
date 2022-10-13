@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'bootstrap4',
     'stdimage',
     'rest_framework',
-    'phonenumber_field'
+    'phonenumber_field',
+    #'rest_framework.authtoken'   fazer autenticão via token  https://www.django-rest-framework.org/api-guide/authentication/
 ]
 
 MIDDLEWARE = [
@@ -54,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'cyberburguer.urls'
@@ -82,12 +84,12 @@ WSGI_APPLICATION = 'cyberburguer.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'cyberburguer',
-        'USER': 'cyberburgueradmin',
-        'PASSWORD': 'cyber1234',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'cyberburgueradmin',
+        'USER': 'root',
+        'PASSWORD': 'Mago7766',
         'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': '3306',
     }
 }
 

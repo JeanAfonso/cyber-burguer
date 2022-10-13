@@ -2,7 +2,7 @@ from django import forms
 #from core.models import Produto,Cliente,Endereco,Pedido
 from django import forms
 
-from core.models import Pedido, Cliente, Produto, Endereco
+from core.models import Car, Cliente, Produto, Endereco
 
 
 class PedidoForm(forms.Form):
