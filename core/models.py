@@ -1,8 +1,9 @@
 from django.db import models
 from stdimage import StdImageField
 from phonenumber_field.modelfields import PhoneNumberField
-#from django.contrib.auth.base_user import BaseUserManager
-#from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.base_user import BaseUserManager
+from django.contrib.auth.models import AbstractUser,AbstractBaseUser
+from django.contrib.auth.models import UserManager
 
 class Base(models.Model):
     created_at = models.DateTimeField('created_at',auto_now_add=True)
@@ -30,15 +31,18 @@ class Endereco(Base):
     cep =  models.CharField("cep", max_length=50)    
     def __str__(self):
         return self.rua
-      
+
+
+
 class Cliente(Base):
     nome = models.CharField('Nome', max_length=100, null = False, blank = False)
     sobrenome = models.CharField('sobrenome', max_length=100, null = False, blank = False)
-    email = models.EmailField('Email', max_length=100, null = False, blank = False)
+    email = models.EmailField('Email', max_length=100, null = False, blank = False, unique = True)
     telefone = PhoneNumberField('Telefone', unique = True, null = False, blank = False, primary_key=True)
     endereco = models.ForeignKey("Endereco", related_name='Cliente', on_delete=models.CASCADE, null = False, blank = False)
     foto = StdImageField('foto', upload_to='path/to/img', blank=True)
     comentario = models.TextField('Comentario', null=True, blank=True)
+    password = models.CharField(max_length=100, null = False, blank = False)
 
     def __str__(self):
         return str(self.telefone)

@@ -1,6 +1,6 @@
 
 from django.urls import path
-from core.views import IndexView,MenuView,AboutView,BookView,ProdutoViewSet,ClienteViewSet,EnderecoViewSet,CarViewSet,CadastroView
+from core.views import IndexView,MenuView,AboutView,BookView,ProdutoViewSet,ClienteViewSet,EnderecoViewSet,CarViewSet,CadastroView,loginview
 from django.urls import path,include
 from rest_framework import routers
 
@@ -22,7 +22,7 @@ urlpatterns = [
     path('/about/',AboutView.as_view(), name='about'),
     path('/book/',BookView.as_view(), name='book'),
     path('api-auth/',  include(router.urls)),
-    path('Cadastro/', CadastroView.as_view(), name='cadastro')
-    #path('Login/', LoginView.as_view(), name='login' ),
+    path('/cadastro/', CadastroView.as_view(), name='cadastro'),
+    path('api-auth/login/', loginview.as_view(), name='login' ),
 
 ]

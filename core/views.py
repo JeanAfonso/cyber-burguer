@@ -5,6 +5,8 @@ from rest_framework import viewsets
 #-------------------------------------------------------------------------------
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
 #-------------------------------------------------------------------------------
 
 class IndexView(TemplateView):
@@ -22,6 +24,8 @@ class BookView(TemplateView):
     
 class CadastroView(TemplateView):
     template_name = 'cadastro/cadastro.html'
+    
+    
 #Autenticação---------------------------------------------------------------------
 class LoginViewSet(APIView):
     pass
@@ -41,5 +45,18 @@ class EnderecoViewSet(viewsets.ModelViewSet):
     serializer_class = EnderecoSerializer
     
 class CarViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+
     queryset = Car.objects.all()
     serializer_class = CarSerializer
+    
+    
+class loginview(APIView):
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+    def get(self, request, format=None):
+        content = {
+            'user': str(request.user),
+            'auth': str(request.auth),
+        }
+        return Response(content)
