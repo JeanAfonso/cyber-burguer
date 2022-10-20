@@ -7,5 +7,11 @@ __pycache__
 .idea
 
 .\2022\10
-.\venv
+.venv
 .\static\images
+
+venv/ 
+.vscode/
+.t.txt
+.fotos/2022/10/f4.png
+.path/to/img/client1.jpgfotos

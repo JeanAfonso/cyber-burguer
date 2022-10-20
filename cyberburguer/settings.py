@@ -42,10 +42,13 @@ INSTALLED_APPS = [
     'bootstrap4',
     'stdimage',
     'rest_framework',
-    'phonenumber_field',
+    'Api',
+    'knox',
+    'rest_framework.authtoken'
+
     #'rest_framework.authtoken'   fazer autenticão via token  https://www.django-rest-framework.org/api-guide/authentication/
 ]
-
+ROLEPERMISSIONS_MODULE = 'cyberburguer.roles'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware', 
@@ -127,13 +130,9 @@ USE_TZ = True
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
-       
-    ],
+
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ]
 }
 # Static files (CSS, JavaScript, Images)

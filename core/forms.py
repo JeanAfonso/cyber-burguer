@@ -1,23 +1,18 @@
-from django import forms
+
 #from core.models import Produto,Cliente,Endereco,Pedido
-from django import forms
+from django.forms import ModelForm
 
-from core.models import Car, Cliente, Produto, Endereco
+from core.models import  Cliente,Endereco
 
 
-class PedidoForm(forms.Form):
-    observacao = forms.CharField(label = 'Nome')
-    total = forms.DecimalField(label = "Total")
+class EnderecoForm(ModelForm):
+    class Meta:
+        model = Endereco
+        fields = ['rua', 'numero', 'cep']
 
-class EnderecoForm(forms.Form):
-    rua = forms.CharField(label ='rua')
-    numero = forms.CharField(label ='numero')
-    cep = forms.CharField(label ='cep')
     
     
-class ClienteForm(forms.Form):
-    nome = forms.CharField(label ='Nome')
-    sobrenome = forms.CharField(label ='sobrenome')
-    email = forms.CharField(label ='email')
-    telefone = forms.CharField(label ='telefone')
-
+class ClienteForm(ModelForm):
+    class Meta:
+        model = Cliente
+        fields = ['nome', 'sobrenome', 'email', 'telefone', 'foto','comentario']

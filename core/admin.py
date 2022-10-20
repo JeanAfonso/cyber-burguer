@@ -12,20 +12,6 @@ class ProdutoAdmin(admin.ModelAdmin):
         'updated_at',
     )
 admin.site.register(Produto, ProdutoAdmin)
-
-
-class ClienteAdmin(admin.ModelAdmin):
-    list_display = (
-        'nome',
-        'sobrenome',
-        'email', 
-        'telefone',
-        'endereco',
-        'created_at',
-        'updated_at',
-    )
-admin.site.register(Cliente, ClienteAdmin)
-
 class EnderecoAdmin(admin.ModelAdmin):
     list_display = (
         'rua',
@@ -48,3 +34,22 @@ class CarAdmin(admin.ModelAdmin):
         'updated_at',
     )
 admin.site.register(Car, CarAdmin)
+
+
+
+    
+    
+class ClienteAdmin(admin.ModelAdmin):
+     
+    list_display = (
+        'nome',
+        'sobrenome',
+        'email', 
+        'telefone',
+        'created_at',
+        'updated_at',
+    )
+
+ 
+admin.site.register(Cliente, ClienteAdmin)
+

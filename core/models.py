@@ -4,14 +4,14 @@ from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser,AbstractBaseUser
 from django.contrib.auth.models import UserManager
+from django.conf import settings
 
 class Base(models.Model):
     created_at = models.DateTimeField('created_at',auto_now_add=True)
     updated_at = models.DateTimeField('updated_at',auto_now=True)
     ativo = models.BooleanField('Ativo',default=True)
     class Meta:
-        abstract=True
-        
+        abstract=True      
         
 class Produto(Base):
     nome = models.CharField('Nome', max_length=100, null = False, blank = False)
@@ -28,7 +28,8 @@ class Produto(Base):
 class Endereco(Base):
     rua = models.CharField("rua", max_length=50)
     numero = models.CharField("numero", max_length=50)
-    cep =  models.CharField("cep", max_length=50)    
+    cep =  models.CharField("cep", max_length=50)
+        
     def __str__(self):
         return self.rua
 
@@ -39,7 +40,7 @@ class Cliente(Base):
     sobrenome = models.CharField('sobrenome', max_length=100, null = False, blank = False)
     email = models.EmailField('Email', max_length=100, null = False, blank = False, unique = True)
     telefone = PhoneNumberField('Telefone', unique = True, null = False, blank = False, primary_key=True)
-    endereco = models.ForeignKey("Endereco", related_name='Cliente', on_delete=models.CASCADE, null = False, blank = False)
+    endereco = models.OneToOneField(Endereco, related_name='clientes', on_delete=models.CASCADE, null = False, blank = False)
     foto = StdImageField('foto', upload_to='path/to/img', blank=True)
     comentario = models.TextField('Comentario', null=True, blank=True)
     password = models.CharField(max_length=100, null = False, blank = False)
@@ -47,34 +48,39 @@ class Cliente(Base):
     def __str__(self):
         return str(self.telefone)
 
-"""
-class CartManager(models.manager):
+
+User = settings.AUTH_USER_MODEL
+
+class CartManager(models.Manager):
     def new_or_get(self, request):
-        cart_id = request.session.get("ID_Car", None)
-        qs = self.get_queryset().filter(id = cart_id)
-        if qs.count == 1:
+        cart_id = request.session.get("cart_id", None)
+        qs = self.get_queryset().filter(id=cart_id)
+        if qs.count() == 1:
             new_obj = False
             cart_obj = qs.first()
-            if request.Cliente.is_authenticate and cart_obj.user is None:
-                cart_obj.Cliente = request.user
+            if request.user.is_authenticated and cart_obj.user is None:
+                cart_obj.user = request.user
                 cart_obj.save()
         else:
-            cart_obj = Cart.objects.new(user = request.user)
+            cart_obj = Car.objects.new(user=request.user)
             new_obj = True
             request.session['cart_id'] = cart_obj.id
         return cart_obj, new_obj
 
-    def new(self, user = None):
+    def new(self, user=None):
         user_obj = None
         if user is not None:
-            if user.is_authenticate:
+            if user.is_authenticated:
                 user_obj = user
-        return self.model.objects.create(user = user_obj)    
-"""    
+        return self.model.objects.create(user=user_obj)
+
+    
 class Car(Base):
-    id = models.AutoField('ID_Car', primary_key=True, auto_created=True)
+    
+    id = models.AutoField('cart_id', primary_key=True, auto_created=True)
     produtos = models.ManyToManyField("Produto", blank=True)
-    cliente = models.ForeignKey("Cliente", on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null = True, blank = True)
+    cliente = models.OneToOneField(Cliente,related_name='Cars', on_delete=models.CASCADE, null=True, blank=True)
     total = models.DecimalField(default = 0.00, max_digits=5, decimal_places = 2)
     observacao = models.TextField('Observação', null=True,blank=True)
     #objects = CartManager()
@@ -92,9 +98,8 @@ class Pedido(Base):
         ('Cn',"Cancelado")
     ) 
     status_pedido = models.CharField(max_length=2, choices=status, blank='Ad', null='Ad')
- 
-"""
 
+"""
 class Cliente(models.Model):
     nome= models.CharField(_("nome"), max_length=50)
     endereco = models.ForeignKey(Endereco, on_delete=models.CASCADE)

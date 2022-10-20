@@ -13,18 +13,8 @@ class ProdutoSerializer(serializers.ModelSerializer):
         'foto',
         'descricao']
     
-class ClienteSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Cliente
-        fields = [
-        'nome',
-        'sobrenome',
-        'email', 
-        'telefone',
-        'endereco',
-        'created_at',
-        'updated_at']
-        
+
+          
 class EnderecoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Endereco
@@ -32,20 +22,45 @@ class EnderecoSerializer(serializers.ModelSerializer):
         'rua',
         'numero', 
         'cep',
-        'created_at',
-        'updated_at']
-
+        #'created_at',
+        #'updated_at'
+        ]
         
+                       
 class CarSerializer(serializers.ModelSerializer):
+    cliente = serializers.StringRelatedField(many=True)
+
     class Meta:
         model = Car
         fields = [
         'id',
+        'user',
         'get_produtos', 
-        'cliente',
         'total',
         'observacao',
-        'created_at',
-        'updated_at'
+        #'created_at',
+        #'updated_at'
         ]
+
+        # You can extend here to work on `user_object` as required - update etc.
+
+
+
+class ClienteSerializer(serializers.ModelSerializer):
+    endereco = EnderecoSerializer()
+    #pedidos = PedidoSerializer()
+    class Meta:
+        
+        model = Cliente
+        fields = [
+        'nome',
+        'sobrenome',
+        'email', 
+        'telefone',
+        'endereco',
+        #'pedidos',
+        #'created_at',
+        #'updated_at'
+        ]   
+     
 

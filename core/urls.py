@@ -1,28 +1,15 @@
 
 from django.urls import path
-from core.views import IndexView,MenuView,AboutView,BookView,ProdutoViewSet,ClienteViewSet,EnderecoViewSet,CarViewSet,CadastroView,loginview
+from core.views import IndexView,MenuView,AboutView,BookView,CadastroView,cart_home
 from django.urls import path,include
-from rest_framework import routers
-
-
-
-
-
-router = routers.DefaultRouter()
-router.register(r'Produto', ProdutoViewSet, basename='ProdutoSerializer')
-router.register(r'Cliente', ClienteViewSet, basename='ClienteViewSet')
-router.register(r'Endereco', EnderecoViewSet, basename='EnderecoViewSet')
-router.register(r'Car', CarViewSet, basename='CarViewSet')
-
 
 urlpatterns = [
 
     path('',IndexView.as_view(), name='index'),
-    path('/menu/',MenuView.as_view(), name='menu'),
-    path('/about/',AboutView.as_view(), name='about'),
-    path('/book/',BookView.as_view(), name='book'),
-    path('api-auth/',  include(router.urls)),
-    path('/cadastro/', CadastroView.as_view(), name='cadastro'),
-    path('api-auth/login/', loginview.as_view(), name='login' ),
+    path('menu/',MenuView.as_view(), name='menu'),
+    path('about/',AboutView.as_view(), name='about'),
+    path('book/',BookView.as_view(), name='book'),
+    path('cart/', cart_home, name='cart'),
+    path('cadastro/', CadastroView.as_view(), name='cadastro')
 
 ]
