@@ -1,0 +1,34 @@
+{% extends 'sessao_2/index.html' %}
+{% load static %}
+{% block content %}
+<section class="book_section layout_padding">
+  <div class="container">
+    <div class="heading_container">
+      
+
+  
+      <h2>
+      Seu carrinho
+      </h2>
+      {% for p in produtos %} 
+    
+
+        <h5>
+                     
+          {{ p }}</h5>
+          <h5>
+        
+          {{ p.codigo_do_produto }}</h5>
+          <h5>
+          {{ p.foto }}</h5>
+        
+        
+        
+          {% endfor %}
+        </div>  
+      </div>
+</section>
+
+
+
+  {% endblock %}

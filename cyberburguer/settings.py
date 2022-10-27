@@ -44,7 +44,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'Api',
     'knox',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'crispy_forms',
+    'Usuarios.apps.UsuariosConfig',
 
     #'rest_framework.authtoken'   fazer autenticão via token  https://www.django-rest-framework.org/api-guide/authentication/
 ]
@@ -88,7 +90,7 @@ WSGI_APPLICATION = 'cyberburguer.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'cyberburgueradmin',
+        'NAME': 'teste_banco',
         'USER': 'root',
         'PASSWORD': 'Mago7766',
         'HOST': 'localhost',
@@ -145,6 +147,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-LOGIN_URL = '/admin/login/'
 
-#AUTH_USER_MODEL = 'core.Cliente' 
+
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'menu'
+LOGOUT_REDIRECT_URL = 'login'
+AUTH_USER_MODEL = 'core.User' 
