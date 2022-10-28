@@ -7,10 +7,9 @@ __pycache__
 .idea
 
 .\2022\10
-.venv
+
 .\static\images
 
-venv/ 
 .vscode/
 .t.txt
 .fotos/2022/10/f4.png
