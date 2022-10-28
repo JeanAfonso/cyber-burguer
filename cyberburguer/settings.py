@@ -40,15 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'bootstrap4',
-    'rest_framework',
-    'Api',
     'stdimage',
-    'rest_framework.authtoken',
-    'Usuarios.apps.UsuariosConfig',
-
-    #'rest_framework.authtoken'   fazer autenticão via token  https://www.django-rest-framework.org/api-guide/authentication/
 ]
-ROLEPERMISSIONS_MODULE = 'cyberburguer.roles'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware', 
@@ -127,14 +121,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
 
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ]
-}
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
