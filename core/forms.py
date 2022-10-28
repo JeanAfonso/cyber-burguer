@@ -1,13 +1,9 @@
-
 from django.forms import ModelForm
 
 from core.models import User
 from django.core.exceptions import NON_FIELD_ERRORS, ValidationError
 
 
-
-    
-    
 """class ClienteForm(ModelForm):
     class Meta:
         model = User
