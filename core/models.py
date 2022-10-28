@@ -1,13 +1,8 @@
 from platform import release
 from django.db import models
-from stdimage import StdImageField
-from phonenumber_field.modelfields import PhoneNumberField
-from django.contrib.auth.base_user import BaseUserManager
-from django.contrib.auth.models import AbstractUser,AbstractBaseUser
-from django.contrib.auth.models import UserManager
+from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 from django.core.validators import RegexValidator
-from django.db.models.signals import pre_save, post_save, m2m_changed
 from django.contrib.auth.models import AbstractUser
 
 
@@ -21,11 +16,11 @@ class Base(models.Model):
         
 class Produto(Base):
     id = models.AutoField('Produto_id', primary_key=True, auto_created=True)
-    nome = models.CharField('Nome', max_length=100, null = False, blank = False)
+    nome = models.CharField('Nome', max_length=100, null=False, blank = False)
     codigo_do_produto = models.IntegerField('Codigo de produto', null = False, blank = False)
     preco = models.DecimalField('Preço', decimal_places=2, max_digits=9, null = False, blank = False)
     estoque = models.IntegerField("Quantidade em Estoque", null = False, blank = False)
-    foto = StdImageField('foto', upload_to='fotos/%Y/%m/', null = True, blank = True)
+    foto = models.ImageField('foto', blank=True, upload_to='fotos/%Y/%m/', null=True)
     descricao = models.TextField('Descrição', null=True,blank=True)
 
     def __str__(self):
@@ -36,7 +31,7 @@ class Produto(Base):
 class Dados(Base):
     teleRegex = RegexValidator(regex = r"^\([1-9]{2}\) 9[7-9]{1}[0-9]{3}\-[0-9]{4}$")
     phone = models.CharField('phone',max_length = 30,primary_key=True)
-    foto = StdImageField('foto', upload_to='path/to/img', blank=True)
+    foto = models.ImageField('foto', upload_to='path/to/img', blank=True)
     comentario = models.TextField('Comentario', null=True, blank=True)
     rua = models.CharField("rua", max_length=50)
     numero = models.CharField("numero", max_length=50)

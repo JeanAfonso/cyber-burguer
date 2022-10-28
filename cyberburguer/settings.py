@@ -40,12 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'bootstrap4',
-    'stdimage',
     'rest_framework',
     'Api',
-    'knox',
+    'stdimage',
     'rest_framework.authtoken',
-    'crispy_forms',
     'Usuarios.apps.UsuariosConfig',
 
     #'rest_framework.authtoken'   fazer autenticão via token  https://www.django-rest-framework.org/api-guide/authentication/
@@ -89,12 +87,12 @@ WSGI_APPLICATION = 'cyberburguer.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'teste_banco',
-        'USER': 'root',
-        'PASSWORD': 'Mago7766',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'cyberburguer',
+        'USER': 'cyberburgueradmin',
+        'PASSWORD': 'cyber1234',
         'HOST': 'localhost',
-        'PORT': '3306',
+        'PORT': '5432',
     }
 }
 
@@ -147,7 +145,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 
 LOGIN_URL = 'login'
