@@ -33,4 +33,3 @@ def cadastro(request):
     return render(request, 'sessao_3/cad/cadastro.html', context)
 class UsuarioView(TemplateView):
     template_name = 'sessao_3/user/perfil.html'"""
-    

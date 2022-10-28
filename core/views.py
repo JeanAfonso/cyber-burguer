@@ -1,49 +1,52 @@
 import re
 from django.views.generic import TemplateView
 from requests import request
-from core.models import Produto,User,Cart
+from core.models import Produto, User, Cart
 
 
-#-------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------
 from rest_framework.response import Response
 from django.shortcuts import render, redirect
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
-#-------------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------------
+
 
 class IndexView(TemplateView):
-    template_name = 'index.html'
-    
+    template_name = "index.html"
+
 
 class MenuView(TemplateView):
-    template_name = 'sessao_2/menu/food.html'
-    
-class AboutView(TemplateView):
-    template_name = 'sessao_2/menu/about.html'
-    
-class BookView(TemplateView):
-    template_name = 'sessao_2/menu/book.html'
-    
+    template_name = "sessao_2/menu/food.html"
 
-    
-    
+
+class AboutView(TemplateView):
+    template_name = "sessao_2/menu/about.html"
+
+
+class BookView(TemplateView):
+    template_name = "sessao_2/menu/book.html"
+
+
 class PedidoView(TemplateView):
-    template_name = 'sessao_2\pedido\pedido.html'
+    template_name = "sessao_2\pedido\pedido.html"
 
 
 def ProdutoListView(request):
-    
-    produto = Produto.objects.get(id =1)
+
+    produto = Produto.objects.get(id=1)
     print(produto)
     context = {
-        'id' : produto.id,
-        'nome': produto.nome, 
-        'codigo_do_produto': produto.codigo_do_produto,
-        'descricao':  produto.descricao,
-        'preco': produto.preco,
-        'foto': produto.foto,
+        "id": produto.id,
+        "nome": produto.nome,
+        "codigo_do_produto": produto.codigo_do_produto,
+        "descricao": produto.descricao,
+        "preco": produto.preco,
+        "foto": produto.foto,
     }
-    return render(request, 'sessao_2/menu/food.html', context=context)
+    return render(request, "sessao_2/menu/food.html", context=context)
+
 
 """    queryset = Produto.objects.all()
     template_name = 'sessao_2/menu/food.html'
@@ -55,10 +58,10 @@ def ProdutoListView(request):
         context["cart"] = cart_obj
         return context
     """
-    
-    
+
+
 def cart_home(request):
-    cart_obj, new_obj  = Cart.objects.new_or_get(request)
+    cart_obj, new_obj = Cart.objects.new_or_get(request)
     return render(request, "sessao_2/carrinho/carrinho.html", {})
 
 

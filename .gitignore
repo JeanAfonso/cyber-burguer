@@ -5,12 +5,12 @@ __pycache__
 *.pyc
 
 .idea
-
+.cyberburguer/settings.py
 .\2022\10
 .venv
 .\static\images
 
-venv/ 
+.venv/ 
 .vscode/
 .t.txt
 .fotos/2022/10/f4.png
