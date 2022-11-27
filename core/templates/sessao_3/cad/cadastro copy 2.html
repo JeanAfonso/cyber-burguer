@@ -1,0 +1,80 @@
+{% extends 'sessao_3/index.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+	<div class="page-content">
+		<div class="form-v10-content">
+			<form class="form-detail" action="#" method="post" id="myform">
+             
+                    
+				{% csrf_token %}
+			    
+				<div class="form-right">
+					<h2>cadastro</h2>
+					
+                    <div class="row">
+                        <div class="col-md-10 mx-auto">
+					<div class="form-group">
+                       
+						<div class="form-row form-row-1">
+                           
+                            {{ form|crispy }}
+							<div class="form-group">
+								<label for="nome" class="col-form-label">nome:</label>
+								<input type="text" class="form-control" name="nome" required>
+							  </div>
+							  <div class="form-group">
+								<label for="username" class="col-form-label">username:</label>
+								<input type="text" class="form-control" name="username" required>
+							  </div>
+							  <div class="form-group">
+								<label for="password" class="col-form-label">password:</label>
+								<input type="text" class="form-control" name="password" required>
+							  </div>
+							  <div class="form-group">
+								<label for="email" class="col-form-label">Email:</label>
+								<input type="text" class="form-control" name="Email" required>
+							  </div>
+							  <div class="form-group">
+								<label for="telefone" class="col-form-label">telefone:</label>
+								<input type="text" class="form-control" name="telefone" required>
+							  </div>
+							  <div class="form-group">
+								<label for="rua" class="col-form-label">rua:</label>
+								<input type="text" class="form-control" name="rua" required>
+							  </div>
+							  <div class="form-group">
+								<label for="numero" class="col-form-label">numero:</label>
+								<input type="text" class="form-control" name="numero" required>
+							  </div>
+							  <div class="form-group">
+								<label for="cep" class="col-form-label">cep:</label>
+								<input type="text" class="form-control" name="cep" required>
+							  </div>
+                            <div class="form-row-last">
+                                <input type="submit" name="register" class="register" value="cadastro">
+                              
+                            </div>
+                            <div class="form-row-last">
+    
+                                  </a>
+                            </div>
+						</div>
+                    </div>
+                   
+		
+                </div>
+					</div>
+					</div>
+                  
+                 
+        </div>
+              
+			</form>
+		</div>
+	</div>
+
+
+{% endblock %}
+

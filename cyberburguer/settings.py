@@ -41,15 +41,11 @@ INSTALLED_APPS = [
     'core',
     'bootstrap4',
     'stdimage',
-    'rest_framework',
-    'Api',
-    'knox',
-    'rest_framework.authtoken',
     'crispy_forms',
-    'Usuarios.apps.UsuariosConfig',
-
-    #'rest_framework.authtoken'   fazer autenticão via token  https://www.django-rest-framework.org/api-guide/authentication/
+    'carrinho'
 ]
+
+SITE_ID =1
 ROLEPERMISSIONS_MODULE = 'cyberburguer.roles'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -60,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 
 ]
 
@@ -76,6 +73,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+        
             ],
         },
     },
@@ -121,7 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'pt-br'
+LANGUAGE_CODE ='pt-BR'
 
 TIME_ZONE = 'America/Sao_Paulo'
 
@@ -133,9 +131,10 @@ REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
 
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ]
+    'DEFAULT_PERMISSION_CLASSES': [
+    #'rest_framework.permissions.IsAdminUser',
+       'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ],
 }
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
@@ -150,7 +149,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-LOGIN_URL = 'login'
+LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = 'menu'
 LOGOUT_REDIRECT_URL = 'login'
-AUTH_USER_MODEL = 'core.User' 
+

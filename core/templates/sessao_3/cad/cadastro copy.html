@@ -1,0 +1,79 @@
+{% extends 'sessao_3/index.html' %}
+{% load bootstrap4 %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+	<div class="page-content">
+		<div class="form-v10-content">
+			<form action="" class="form-detail"  autocomplete="off" method="" id="myform">
+
+			
+
+				
+				<div class="form-left">
+					<h2>Cadastro</h2>
+				<div class="form-group">
+					<form action="{% url 'cadastro' %}"  method="post">
+						{{ form.songfile }}
+						{{ form.path }}
+							{% csrf_token %}
+						<div class="form-row form-row-1">
+							<input type="text" name="username" id="username" class="input-text" placeholder="username" required>
+						</div>
+						<div class="form-row form-row-1">
+							<input type="text" name="nome" id="nome" class="input-text" placeholder="nome" required>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="form-row form-row-2">
+							<input type="text" name="telefone" class="telefone" id="telefone" placeholder="telefone" required>
+						</div>
+					</div>
+					<div class="form-row">
+						<input type="text" name="email" id="email" class="input-text" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" placeholder="email">
+					</div>
+				</div>
+				<div class="form-right">
+					<h2>Endereço</h2>
+					<div class="form-row">
+						<input type="text" name="rua" class="street" id="rua" placeholder="rua" required>
+					</div>
+					<div class="form-row">
+						<input type="text" name="numero" class="numero" id="numero" placeholder="numero" required>
+					</div>
+					<div class="form-group">
+						<div class="form-row form-row-1">
+							<input type="text" name="zip" class="cep" id="cep" placeholder="cep" required>
+						</div>
+					
+					</div>
+					<div class="form-row">
+
+						
+					</div>
+					
+					<div class="form-checkbox">
+						<label class="container"><p>I do accept the <a href="#" class="text">Terms and Conditions</a> of your site.</p>
+						  	<input type="checkbox" name="checkbox">
+						  	<span class="checkmark"></span>
+						</label>
+					</div>
+	
+				
+					<div class="form-row-last">
+			
+						<button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+			
+					</div>
+					
+				</div>
+			
+					
+			</form>
+		</div>
+	</div>
+
+
+{% endblock %}

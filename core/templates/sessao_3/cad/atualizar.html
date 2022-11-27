@@ -1,0 +1,40 @@
+{% extends 'sessao_3/index.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <!-- book section -->
+  <section class="book_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+        Perfil
+        </h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form_container">
+			<form class="form-detail" action="#" method="post" id="myform">
+          
+				{% csrf_token %}
+				{{ form|crispy }}
+              
+              <div class="btn_box">
+                <button  type="submit" name="register" class="register" value="Atualizar">
+                  Atualizar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+   
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end book section -->
+{% endblock %}
+
+
+
+

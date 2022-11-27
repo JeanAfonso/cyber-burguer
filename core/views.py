@@ -1,14 +1,15 @@
 import re
 from django.views.generic import TemplateView
 from requests import request
-from core.models import Produto,User,Cart
+from core.models import Produto,Cart
 
-
+from django.shortcuts import render, redirect
 #-------------------------------------------------------------------------------
 from rest_framework.response import Response
 from django.shortcuts import render, redirect
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth.decorators import login_required
 #-------------------------------------------------------------------------------
 
 class IndexView(TemplateView):
@@ -24,13 +25,10 @@ class AboutView(TemplateView):
 class BookView(TemplateView):
     template_name = 'sessao_2/menu/book.html'
     
-
-    
-    
 class PedidoView(TemplateView):
     template_name = 'sessao_2\pedido\pedido.html'
 
-
+""" 
 def ProdutoListView(request):
     
     produto = Produto.objects.get(id =1)
@@ -45,7 +43,7 @@ def ProdutoListView(request):
     }
     return render(request, 'sessao_2/menu/food.html', context=context)
 
-"""    queryset = Produto.objects.all()
+   queryset = Produto.objects.all()
     template_name = 'sessao_2/menu/food.html'
     
     def get_context_data(self, **kwargs):
@@ -56,10 +54,6 @@ def ProdutoListView(request):
         return context
     """
     
-    
-def cart_home(request):
-    cart_obj, new_obj  = Cart.objects.new_or_get(request)
-    return render(request, "sessao_2/carrinho/carrinho.html", {})
 
 
 """
